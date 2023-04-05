@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class RephotographyConfig(AppConfig):
+class JubileumConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.Jubileum'
+    name = 'apps.jubileum'
