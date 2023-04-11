@@ -8,9 +8,8 @@ router = routers.DefaultRouter()
 endpoint = utils.build_app_endpoint("jubileum")
 documentation = utils.build_app_api_documentation("jubileum", endpoint)
 
-# router.register(rf'{endpoint}/geojson/place', views.PlaceGeoViewSet, basename='place on geojson')
-# router.register(rf'{endpoint}/place', views.PlaceViewSet, basename='place')
-# router.register(rf'{endpoint}/image', views.IIIFImageViewSet, basename='image')
+router.register(rf'{endpoint}/geojson/place', views.PlaceGeoViewSet, basename='place on geojson')
+router.register(rf'{endpoint}/image', views.IIIFImageViewSet, basename='image')
 
 urlpatterns = [
     path('', include(router.urls)),
