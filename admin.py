@@ -14,10 +14,23 @@ import base64
 from io import StringIO
 
 
+DEFAULT_LONGITUDE =  11.9946
+DEFAULT_LATITUDE  = 57.7089
+DEFAULT_ZOOM = 10
+
 @admin.register(Place)
 class PlaceAdmin(admin.GISModelAdmin):
     list_display = ['name', 'geometry', 'parent_id']
     search_fields = ['name']
+
+    gis_widget_kwargs = {
+        'attrs': {
+            'default_lon' : DEFAULT_LONGITUDE,
+            'default_lat' : DEFAULT_LATITUDE,
+            'default_zoom' : DEFAULT_ZOOM,
+        },
+    }
+
 
 class PlaceFilter(AutocompleteFilter):
     title = _('Place') # display title
