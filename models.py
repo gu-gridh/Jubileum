@@ -3,7 +3,9 @@ from django.contrib.gis.db import models
 import diana.abstract.models as abstract
 from django.utils.translation import gettext_lazy as _
 from diana.storages import OriginalFileStorage
-from diana.abstract.models import get_original_path
+from ckeditor.fields import RichTextField
+from markdownfield.models import MarkdownField, RenderedMarkdownField
+from markdownfield.validators import VALIDATOR_STANDARD
 # Create your models here.
 
 class ImageTypeTag(abstract.AbstractTagModel):
@@ -24,7 +26,7 @@ class Place(abstract.AbstractBaseModel):
     name = models.CharField(max_length=256, null=True, blank=True, verbose_name=_("name"), help_text=_("this field refers to the placename"))
     geometry = models.GeometryField(verbose_name=_("geometry"), blank=True, null=True)
     parent_id = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, help_text=_("Parent of this place"))
-    description = models.TextField(null=True, blank=True, help_text=("Descriptive text about the the place"))
+    description = RichTextField(null=True, blank=True, help_text=("Descriptive text about the the place"))
 
     def __str__(self) -> str:
         return self.name
@@ -52,7 +54,7 @@ class Image(abstract.AbstractTIFFImageModel):
     place   = models.ForeignKey(Place, null=True, blank=True, on_delete=models.CASCADE, related_name="images")
     type = models.CharField(max_length=32, null=True, blank=True, help_text=_("Type of the image can be jpeg, png, etc."))
     image_url = models.CharField(max_length=256, blank=True, null=True)
-    description = models.TextField(null=True, blank=True, help_text=("Descriptive text about the the images"))
+    description = RichTextField(null=True, blank=True, help_text=("Descriptive text about the the images"))
 
     def __str__(self) -> str:
         return f"{self.title}"
@@ -64,5 +66,5 @@ class Layer(abstract.AbstractBaseModel):
     url = models.URLField(blank=True, null=True)
     type = models.CharField(max_length=32, null=True, blank=True)
     format = models.CharField(max_length=32, null=True, blank=True, help_text=_("Type of the image can be jpeg, png, etc."))
-    description = models.TextField(null=True, blank=True, verbose_name=_("description"))
+    description = RichTextField(null=True, blank=True, verbose_name=_("description"))
 
