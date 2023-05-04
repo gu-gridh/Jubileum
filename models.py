@@ -4,8 +4,8 @@ import diana.abstract.models as abstract
 from django.utils.translation import gettext_lazy as _
 from diana.storages import OriginalFileStorage
 from ckeditor.fields import RichTextField
-# from markdownfield.models import MarkdownField, RenderedMarkdownField
-# from markdownfield.validators import VALIDATOR_STANDARD
+from markdownfield.models import MarkdownField, RenderedMarkdownField
+from markdownfield.validators import VALIDATOR_STANDARD
 # Create your models here.
 
 class ImageTypeTag(abstract.AbstractTagModel):
@@ -27,7 +27,6 @@ class Place(abstract.AbstractBaseModel):
     geometry = models.GeometryField(verbose_name=_("geometry"), blank=True, null=True)
     parent_id = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, help_text=_("Parent of this place"))
     description = RichTextField(null=True, blank=True, help_text=("Descriptive text about the place"))
-
     def __str__(self) -> str:
         return self.name
 
