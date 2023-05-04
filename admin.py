@@ -31,12 +31,12 @@ class PlaceAdmin(admin.GISModelAdmin):
         },
     }
 
-@admin.register(ImageTypeTag)
-class ImageTypeTagAdmin(admin.ModelAdmin):
-    list_display = ['text']
-    search_fields = ['text']
+# @admin.register(ImageTypeTag)
+# class ImageTypeTagAdmin(admin.ModelAdmin):
+#     list_display = ['text']
+#     search_fields = ['text']
 
-    
+
 class PlaceFilter(AutocompleteFilter):
     title = _('Place') # display title
     field_name = 'place' # name of the foreign key field
