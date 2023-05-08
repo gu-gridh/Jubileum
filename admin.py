@@ -7,6 +7,10 @@ from diana.utils import get_fields, DEFAULT_FIELDS, DEFAULT_EXCLUDE
 from admin_auto_filters.filters import AutocompleteFilter
 from rangefilter.filters import NumericRangeFilter
 from django.contrib.admin import EmptyFieldListFilter
+
+from leaflet.admin import LeafletGeoAdminMixin
+from leaflet_admin_list.admin import LeafletAdminListMixin
+
 from django.conf import settings
 from PIL import Image as ima
 import os
@@ -19,7 +23,8 @@ DEFAULT_LATITUDE  = 57.7089
 DEFAULT_ZOOM = 10
 
 @admin.register(Place)
-class PlaceAdmin(admin.GISModelAdmin):
+class PlaceAdmin(LeafletAdminListMixin,  LeafletGeoAdminMixin, admin.ModelAdmin,):
+    display_raw = True
     list_display = ['name', 'geometry', 'parent_id']
     search_fields = ['name']
 
