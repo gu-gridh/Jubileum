@@ -23,7 +23,7 @@ DEFAULT_LATITUDE  = 57.7089
 DEFAULT_ZOOM = 10
 
 @admin.register(Place)
-class PlaceAdmin(LeafletAdminListMixin,  LeafletGeoAdminMixin, admin.ModelAdmin,):
+class PlaceAdmin(LeafletGeoAdminMixin, admin.ModelAdmin,):
     display_raw = True
     list_display = ['name', 'geometry', 'parent_id']
     search_fields = ['name']
