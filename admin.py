@@ -36,10 +36,11 @@ class PlaceAdmin(LeafletGeoAdminMixin, admin.ModelAdmin,):
         },
     }
 
-# @admin.register(ImageTypeTag)
-# class ImageTypeTagAdmin(admin.ModelAdmin):
-#     list_display = ['text']
-#     search_fields = ['text']
+
+@admin.register(ImageTypeTag)
+class ImageTypeTagAdmin(admin.ModelAdmin):
+    list_display = ['text']
+    search_fields = ['text']
 
 
 class PlaceFilter(AutocompleteFilter):
